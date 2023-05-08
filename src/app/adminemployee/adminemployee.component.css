@@ -1,0 +1,68 @@
+#body{
+    margin: 0%;
+    display: flex;
+    justify-content: center;
+    background-color: #F6F6F6;
+}
+
+#homerootdiv {
+ margin: 5px;   
+ display: flex;
+ flex-direction: row;
+ width: 90vw;
+ height: 90vh;
+ 
+}
+#topbar{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    display: flex;
+    height: 5vh;
+    justify-content: center;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+#sidebar {
+    display: flex;
+    margin: 5px;
+    flex-direction: column;
+    flex: 1;
+    height: 90vh;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+#employeelist {
+    display: flex;
+    margin: 5px;
+    flex-direction: column;
+    flex: 1;
+    height: 90vh;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+#datebar {
+    display: flex;
+    margin: 5px;
+    flex-direction: column;
+    flex: 1;
+    height: 90vh;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+#summerydiv {
+    width: 60vw;
+    margin: 5px;
+    height: 90vh;
+    flex: 2;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+#h2headingssidebar{
+    color: black;
+    font-weight: 800;
+    font-size: 20px;
+    
+}

@@ -1,0 +1,25 @@
+
+<body id="body">
+    <div>
+<div id="topbar">
+    <app-topbar></app-topbar>
+</div>
+<div id="homerootdiv">
+    
+    <div id="sidebar">
+      <app-projects (projectid)="handleprojectidoutput($event)"></app-projects>
+    </div>
+    <div id="datebar">
+        <app-dates [projectid]="projectid"   (dateid)="handledateidoutput($event)"></app-dates>
+    </div>
+    <div id="summerydiv">
+       <app-summerylist [projectid]="projectid" [dateid]="dateid"></app-summerylist>
+    </div>
+   
+</div>
+</div>
+</body>
+<!--
+<div style="display: flex; width: 100px; height:100px; justify-content: center;align-items: center;">
+    <button (click)="logout()" >logout</button>
+</div>-->

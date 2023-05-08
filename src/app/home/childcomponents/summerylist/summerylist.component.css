@@ -1,0 +1,43 @@
+#maindiv{
+    display: flex;
+    flex-direction: column;
+}
+
+#headingdiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#datapopulatediv{
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#productform{
+    display: flex;
+    flex-direction: column;
+}
+#renderdiv{
+    font-size: 18px;
+    
+    width: 83%;
+    padding: 10px;
+    cursor: pointer;
+}
+#renderdiv:hover{
+    font-size: 20px;
+}
+#summerybar{
+    background-color: bisque;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5%;
+}

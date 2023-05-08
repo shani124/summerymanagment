@@ -1,0 +1,35 @@
+<div id="maindiv">
+    <div id="headingdiv">
+        <h2>Project Dates</h2>
+        <mat-icon [ngStyle]="{'width':'20px','height':'20px','opacity':opacityofmaticon,'cursor':'pointer','pointer-events': pointerevent}" aria-hidden="false" aria-label="Example home icon" fontIcon="add" data-toggle="modal" data-target="#datetmodel" ></mat-icon>
+    </div>
+    <div id="datapopulatediv">
+        <div id="renderdiv" *ngFor="let date of employeedates"> 
+          <div  id="date-{{date.id}}" (click)="setdateid(date.id)"> {{date.date}}</div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="datetmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabels" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Date</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="productform" #mydateform="ngForm"  (ngSubmit)="loginclick()" style="display: flex; flex-direction: column;">              
+                <input (change)="setdate($event)" [value]="projectdate" type="date" class="form-control">            
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" [disabled]="projectdate===''" (click)="loginclick()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

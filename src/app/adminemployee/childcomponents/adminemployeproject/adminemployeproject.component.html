@@ -1,0 +1,42 @@
+<div id="maindiv">
+    <div id="headingdiv">
+        <h2>Projects</h2>
+        <mat-icon [ngStyle]="{'width':'20px','height':'20px','opacity':opacityofmaticon,'cursor':'pointer','pointer-events': pointerevent}" id="addicon" aria-hidden="false" aria-label="Example home icon" fontIcon="add" data-toggle="modal" data-target="#projectmodel" ></mat-icon>
+    </div>
+    <div id="datapopulatediv">
+        <div id="renderdiv"  *ngFor="let project of employeeprojects"> 
+          <div  id="project-{{project.id}}" (click)="setprojectid(project.id)" > {{project.projectname}}</div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="projectmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Assign Project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <!--- <form id="productform" #myform="ngForm"  (ngSubmit)="loginclick()" style="display: flex; flex-direction: column;">
+              <input [(ngModel)]="projectname" type="text" id="projectname" name="projectname" placeholder="Enter Project name"  minlength="3" maxlength="10" required/>                            
+          </form>---> 
+          <select id="selectprojects" [(ngModel)]="assignproject">
+            <option value="default"  selected="selected">Select Project</option>
+            <option *ngFor="let project of dropdownprojects" value="{{project.projectname}}" >{{project.projectname}}</option>
+            
+          </select>
+          
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button  type="submit" class="btn btn-primary" data-dismiss="modal" [disabled]="this.assignproject==='default'" (click)="loginclick()">Assign</button>
+        </div>
+      </div>
+    </div>
+  </div>

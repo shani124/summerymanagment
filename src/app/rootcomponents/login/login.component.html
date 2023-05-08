@@ -1,0 +1,36 @@
+<body>
+<div class="wrapper" style="height:100vh;">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 class="active"> Sign In </h2>
+     <!-- <h2 class="inactive underlineHover">Sign Up </h2>-->
+  
+     
+  
+      <!-- Login Form -->
+      <form #myform="ngForm" (ngSubmit)="loginclick()" style="display: flex; flex-direction: column;">
+        <input style="margin:20px; padding: 5px;" [(ngModel)]="username" type="text" id="username" class="second" name="username" placeholder="Username*"  minlength="3" maxlength="10" required>
+        <div style="margin-left: 20px;text-align: start; font-size: small; color: red;" *ngIf="myform.controls['username']?.invalid && myform.controls['username'].touched">
+          <div *ngIf="myform.controls?.['username']?.errors?.['required']">username is required.</div>
+          <div *ngIf="myform.controls?.['username']?.errors?.['minlength']">username must be at least 2 characters long.</div>
+          <div *ngIf="myform.controls?.['username']?.errors?.['maxlength']">username cannot be more than 10 characters long.</div>
+        </div>
+        <input style="margin:20px; padding: 5px;" [(ngModel)]="password" type="password" id="password" class="third" name="password" placeholder="Password*"  minlength="3" maxlength="10" required>
+        <div style="margin-left: 20px;text-align: start; font-size: small; color: red;" *ngIf="myform.controls['password']?.invalid && myform.controls['password'].touched">
+          <div *ngIf="myform.controls?.['password']?.errors?.['required']">password is required.</div>
+          <div *ngIf="myform.controls?.['password']?.errors?.['minlength']">password must be at least 2 characters long.</div>
+          <div *ngIf="myform.controls?.['password']?.errors?.['maxlength']">password cannot be more than 10 characters long.</div>
+        </div>
+        <p *ngIf="loginattempt" style="color: red;">Wrong Username or Password</p>
+        <button id="buttonstylegreen" style="margin:20px; padding: 5px;"  [disabled]="!myform.form.valid" type="submit" value="Log In">Login</button>
+      </form>
+      
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+<!--<a class="underlineHover" href="#">Forgot Password?</a>-->
+        <button routerLink="/signup">Signup</button>
+      </div>
+  
+    </div>
+  </div>
+</body>

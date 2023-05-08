@@ -1,0 +1,64 @@
+<body>
+    <div class="wrapper" style="height:100vh;">
+        <div  id="formContent">
+          <!-- Tabs Titles -->
+          <h2 class="active"> Sign Up </h2>
+         <!-- <h2 class="inactive underlineHover">Sign Up </h2>-->
+      
+         
+         <form [formGroup]="employeeaddforms" style="display: flex; flex-direction: column;" >
+            <label style="margin-left: 10px; text-align: start;" for="username">Username*:</label>
+            <input id="username" name="username" type="text" formControlName="username"/>
+            <div style="margin-left: 10px;text-align: start; font-size: small; color: red;" *ngIf="employeeaddforms.controls['username'].dirty || employeeaddforms.controls['username'].touched" >
+  
+              <div *ngIf="employeeaddforms.controls['username'].errors?.['required']">
+                Username is required.
+              </div>
+              <div *ngIf="employeeaddforms.controls['username'].errors?.['usernameavailablity']">
+                Username is not available.
+              </div>
+            </div>
+            <label style="margin-left: 10px; text-align: start;" for="email">Email*:</label>
+            <input id="email" name="email" type="text" formControlName="email"  />
+            <div  style="margin-left: 10px;text-align: start; font-size: small; color: red;" *ngIf="employeeaddforms.controls['email'].invalid && (employeeaddforms.controls['email'].dirty || employeeaddforms.controls['email'].touched)" >
+  
+              <div *ngIf="employeeaddforms.controls['email'].errors?.['required']">
+                email is required.
+              </div>
+              <div *ngIf="employeeaddforms.controls['email'].errors?.['email']">
+                Incorrect Email
+              </div>
+            </div>
+            <label style="margin-left: 10px; text-align: start;" for="password">Password*:</label>
+            <input id="password" name="password" type="password" formControlName="password"  />
+            <div style="margin-left: 10px;text-align: start; font-size: small; color: red;" *ngIf="employeeaddforms.controls['password'].invalid && (employeeaddforms.controls['password'].dirty || employeeaddforms.controls['password'].touched)" >
+  
+              <div *ngIf="employeeaddforms.controls['password'].errors?.['required']">
+                password is required.
+              </div>
+            </div>
+            <label style="margin-left: 10px; text-align: start;" for="confirmpass">Confirm Password*:</label>
+            <input id="confirmpass" name="confirmpass" type="password" formControlName="confirmpass"/>
+            <div style="margin-left: 10px;text-align: start; font-size: small; color: red;" *ngIf="employeeaddforms.controls['confirmpass'].invalid && (employeeaddforms.controls['confirmpass'].dirty || employeeaddforms.controls['confirmpass'].touched)">
+  
+              <div *ngIf="employeeaddforms.controls['confirmpass'].errors?.['required']">
+                Confirm Password is required.
+              </div>
+              <div *ngIf="employeeaddforms.controls['confirmpass'].errors?.['confirmPasswordValidator']">
+                Password not matched
+              </div>
+            </div>
+        
+          </form>
+          <br/>
+          <br/>
+          <p>Complete the form to enable button.</p>
+          <!-- Remind Passowrd -->
+          <button id="buttonstylegreen" style="margin:20px; padding: 5px;"  (click)="addemployee()" [disabled]="!employeeaddforms.valid">Signup</button>
+          <div id="formFooter">
+    <!--<a class="underlineHover" href="#">Forgot Password?</a>-->
+          </div>
+      
+        </div>
+      </div>
+    </body>

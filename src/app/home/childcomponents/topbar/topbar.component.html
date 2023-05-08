@@ -1,0 +1,116 @@
+<div id="maindiv">
+  <div id="topbarfirst">
+    <img id="userimage"
+      src="https://www.pngitem.com/pimgs/m/130-1300253_female-user-icon-png-download-user-image-color.png" />
+    <h2>Welcome! {{username}}</h2>
+  </div>
+  <h2 style="margin-top: 10px;">Summery Management</h2>
+  <div style="display: flex; flex-direction: row; justify-content: space-around;">
+    <div *ngIf="usertype" class="dropdown">
+      <button class="dropbtn">Settings</button>
+      <div class="dropdown-content">
+        <a data-toggle="modal" data-target="#addmodel" style="font-size: 10px;">Add Employee</a>
+        <a [routerLink]="['/employeemanage']" style="cursor: pointer; font-size: 10px;">Manage Employee</a>
+
+        <a [routerLink]="['/home']"  style="cursor: pointer; font-size: 10px;">My Summery</a>
+        <!--<a data-toggle="modal" data-target="#assignmodel" href="#" style="font-size: 12px;">View Progress</a>
+              <a href="#" style="font-size: 12px;">Assign Project</a>-->
+
+      </div>
+    </div>
+    <mat-icon style="cursor: pointer;" (click)="logout()" id="logouticon" aria-hidden="false"
+      aria-label="Example home icon" fontIcon="logout"></mat-icon>
+  </div>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="addmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="employeeaddform" style="display: flex; flex-direction: column;" >
+          <label style=" text-align: start;" for="username">Username*:</label>
+          <input id="username" name="username" type="text" formControlName="username"/>
+          <div style="text-align: start; font-size: small; color: red;" *ngIf="employeeaddform.controls['username'].invalid && (employeeaddform.controls['username'].dirty || employeeaddform.controls['username'].touched)" >
+
+            <div *ngIf="employeeaddform.controls['username'].errors?.['required']">
+              Username is required.
+            </div>
+            <div *ngIf="employeeaddform.controls['username'].errors?.['usernameavailablity']">
+              Username is not available.
+            </div>
+          </div>
+          <label style=" text-align: start;" for="email">Email*:</label>
+          <input id="email" name="email" type="text" formControlName="email"  />
+          <div  style="text-align: start; font-size: small; color: red;" *ngIf="employeeaddform.controls['email'].invalid && (employeeaddform.controls['email'].dirty || employeeaddform.controls['email'].touched)" >
+
+            <div *ngIf="employeeaddform.controls['email'].errors?.['required']">
+              email is required.
+            </div>
+            <div *ngIf="employeeaddform.controls['email'].errors?.['email']">
+              Incorrect Email
+            </div>
+          </div>
+          <label style=" text-align: start;" for="password">Password*:</label>
+          <input id="password" name="password" type="password" formControlName="password"  />
+          <div style="text-align: start; font-size: small; color: red;" *ngIf="employeeaddform.controls['password'].invalid && (employeeaddform.controls['password'].dirty || employeeaddform.controls['password'].touched)" >
+
+            <div *ngIf="employeeaddform.controls['password'].errors?.['required']">
+              password is required.
+            </div>
+          </div>
+          <label style=" text-align: start;" for="confirmpass">Confirm Password*:</label>
+          <input id="confirmpass" name="confirmpass" type="password" formControlName="confirmpass"/>
+          <div style="text-align: start; font-size: small; color: red;" *ngIf="employeeaddform.controls['confirmpass'].invalid && (employeeaddform.controls['confirmpass'].dirty || employeeaddform.controls['confirmpass'].touched)">
+
+            <div *ngIf="employeeaddform.controls['confirmpass'].errors?.['required']">
+              Confirm Password is required.
+            </div>
+            <div *ngIf="employeeaddform.controls['confirmpass'].errors?.['confirmPasswordValidator']">
+              Password not matched
+            </div>
+          </div>
+      
+        </form>
+        <br/>
+        <br/>
+        <p>Complete the form to enable button.</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="addemployee()" [disabled]="!employeeaddform.valid">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="assignmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Assign</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div id="maindiv">
+    <div id="headingdiv">
+        <h2>Summery</h2>
+        <mat-icon [ngStyle]="{'width':'20px','height':'20px','opacity':opacityofmaticon,'cursor':'pointer','pointer-events': pointerevent}" aria-hidden="false" aria-label="Example home icon" fontIcon="add" data-toggle="modal" data-target="#summerymodel" ></mat-icon>
+    </div>
+    <div id="datapopulatediv">
+        <div id="renderdiv" *ngFor="let summery of allsummery"> 
+          <div id="summerybar">
+            <div style="width:100%; padding: 5px;;display: flex; flex: 1; flex-direction: row; justify-content: space-between;">
+              <h2>{{summery.heading}}</h2>
+              <input type="checkbox" [checked]="summery.ischecked"  (change)="setischecked($event, summery.id,summery.heading,summery.description)">
+            </div>
+            <div style="width:100%; padding: 5px;display: flex; flex:2;justify-content: center;align-items: center;">
+              <p style="margin-top: 2px;">{{summery.description}}</p>
+            </div>
+            
+            
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="summerymodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabels" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Summery</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="productform" #mydateform="ngForm"  (ngSubmit)="loginclick()" style="display: flex; flex-direction: column;">              
+                <input [(ngModel)]="heading"  type="text" id="heading" name="heading"   placeholder="Summary Heading *" required>
+                <div style="text-align: start; font-size: small; color: red;" *ngIf="mydateform.controls['heading'].invalid && (mydateform.controls['heading'].dirty || mydateform.controls['heading'].touched)" >
+  
+                  <div *ngIf="mydateform.controls['heading'].errors?.['required']">
+                    Heading is required.
+                  </div>
+                </div>
+                <input [(ngModel)]="description"  type="text" id="description" name="description"  placeholder="Summary Description *" required>    
+                <div style="text-align: start; font-size: small; color: red;" *ngIf="mydateform.controls['description'].invalid && (mydateform.controls['description'].dirty || mydateform.controls['description'].touched)" >
+  
+                  <div *ngIf="mydateform.controls['description'].errors?.['required']">
+                    Description is required.
+                  </div>
+                </div>                        
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="loginclick()" [disabled]="!mydateform.valid">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

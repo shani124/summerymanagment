@@ -1,0 +1,94 @@
+<div id="maindiv">
+    <div id="headingdiv">
+        <h2>Projects</h2>
+        <mat-icon *ngIf="usertype" id="addicon" aria-hidden="false" aria-label="Example home icon" fontIcon="add" data-toggle="modal" data-target="#projectmodel" ></mat-icon>
+    </div>
+    <div id="datapopulatediv"  *ngFor="let project of allprojects">
+        
+          <div style="display: flex; width: 90%; flex-direction: row; justify-content: space-between;"   >
+            <div [ngStyle]="{'width':'20px','height':'20px','opacity':project.isactive? '1':'0.2','cursor':'pointer','pointer-events':project.isactive? 'auto':'none'}" id="project-{{project.id}}" (click)="setprojectid(project.id)"><p> {{project.projectname}}</p></div>
+            <div *ngIf="usertype">        
+              <mat-icon id="editicon" aria-hidden="false" aria-label="Example home icon" fontIcon="edit" (click)="openProjecteditpopup(template,project.id,project.eid,project.isactive,project.projectname)"></mat-icon>
+              <mat-slide-toggle (change)="settoggle($event,project.id,project.eid,project.projectname)" checked="{{project.isactive}}"></mat-slide-toggle>
+            </div>
+          </div>
+          
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="projectmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="productform" #myform="ngForm"  (ngSubmit)="addproject()" style="display: flex; flex-direction: column;">
+              <input [(ngModel)]="projectname" type="text" id="projectname" name="projectname" placeholder="Enter Project name" required/>         
+              <div  style="text-align: start; font-size: small; color: red;" *ngIf="myform.controls['projectname'].invalid && (myform.controls['projectname'].dirty || myform.controls['projectname'].touched)" >
+  
+                <div *ngIf="myform.controls['projectname'].errors?.['required']">
+                  Project name is required.
+                </div>
+                
+              </div>                   
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" data-dismiss="modal" [disabled]="projectname===''" (click)="addproject()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Edit Project -->
+<div class="modal fade" id="editproject" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Assign</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Edit Project ngx bootstrap -->
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">You are editing ({{modalprojectname}})</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #editprojectform="ngForm">
+      <input id="projectname" name="projectname" placeholder="{{modalprojectname}}" [(ngModel)]="mdoaleditedprojectname" required/>
+      <div style="text-align: start; font-size: small; color: red;" *ngIf="editprojectform.controls['projectname'].invalid && editprojectform.controls['projectname'].touched">
+        <div *ngIf="editprojectform.controls?.['projectname']?.errors?.['required']">Project name is required.</div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary"  (click)="modalRef?.hide()">Close</button>
+    <button type="button" class="btn btn-primary" [disabled]="!editprojectform.valid" (click)="editproject()">Save changes</button>
+  </div>
+
+</ng-template>

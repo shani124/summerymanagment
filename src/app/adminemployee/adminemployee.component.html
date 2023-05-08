@@ -1,0 +1,28 @@
+
+<body id="body">
+    <div>
+<div id="topbar">
+    <app-adminemployeetopbar></app-adminemployeetopbar>
+</div>
+<div id="homerootdiv">
+
+    <div id="employeelist">
+        <app-employeelist (employeeid)="handleemployeeoutput($event)"></app-employeelist>
+    </div>
+    <div id="sidebar">
+      <app-adminemployeproject [employeeid]="employeeid" (projectid)="handleprojectidoutput($event)"></app-adminemployeproject>
+    </div>
+    <div id="datebar">
+        <app-adminemployeedate [employeeid]="employeeid" [projectid]="projectid"   (dateid)="handledateidoutput($event)"></app-adminemployeedate>
+    </div>
+    <div id="summerydiv">
+       <app-adminemployesummery [employeeid]="employeeid" [projectid]="projectid" [dateid]="dateid"></app-adminemployesummery>
+    </div>
+   
+</div>
+</div>
+</body>
+<!--
+<div style="display: flex; width: 100px; height:100px; justify-content: center;align-items: center;">
+    <button (click)="logout()" >logout</button>
+</div>-->

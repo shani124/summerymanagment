@@ -1,0 +1,50 @@
+#maindiv{
+    display: flex;
+    flex-direction: column;
+}
+
+#headingdiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#datapopulatediv{
+    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#productform{
+    display: flex;
+    flex-direction: column;
+}
+#renderdiv{
+    font-size: 18px;
+    cursor: pointer;
+}
+#renderdiv:hover{
+    font-size: 20px;
+}
+#addicon{
+    transition: all .2s ease-in-out; 
+}
+#addicon:hover{
+    transform: scale(1.5); 
+}
+#editicon{
+    transition: all .2s ease-in-out; 
+}
+#editicon:hover{
+    transform: scale(1.5); 
+}
+#disableicon{
+    transition: all .2s ease-in-out; 
+}
+#disableicon:hover{
+    transform: scale(1.5); 
+}
+
